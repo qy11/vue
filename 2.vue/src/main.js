@@ -23,7 +23,7 @@ const Article = {
   data () {
     return {
       title: 'This is a TITLE two three',
-      author: 'Xiaoye',
+      author: 'Xiaoye--sen',
       dateTime: '2021-06-26 20:50:08',
       content: 'This is a CONTENT',
       like: 0,
