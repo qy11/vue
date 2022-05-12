@@ -22,7 +22,7 @@ const { createApp } = Vue;
 const Article = {
   data () {
     return {
-      title: 'This is a TITLE 222dev',
+      title: 'This is a TITLE',
       author: 'Xiaoye',
       dateTime: '2021-06-26 20:50:08',
       content: 'This is a CONTENT',
