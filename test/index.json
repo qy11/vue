@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "code": 0,
+  "msg": "",
+  "data": [{
+    "key": 1,
+    "label": "部门工作",
+    "value": "1",
+    "children": [{
+      "label": "会议布置",
+      "value": "11"
+    }, {
+      "label": "临时任务",
+      "value": "12"
+    }, {
+      "label": "月计划",
+      "value": "13"
+    }]
+  }, {
+    "key": 2,
+    "label": "业务处理",
+    "value": "2",
+    "children": [{
+      "label": "受理",
+      "value": "21"
+    }, {
+      "label": "数据查询",
+      "value": "22"
+    }]
+  }, {
+    "key": 3,
+    "label": "日常工作",
+    "value": "3",
+    "children": [{
+      "label": "日报",
+      "value": "31"
+    }, {
+      "label": "每日巡查",
+      "value": "32"
+    }]
+  }, {
+    "key": 4,
+    "label": "其他",
+    "value": "4",
+    "children": [{
+      "label": "工作协同",
+      "value": "41"
+    }, {
+      "label": "突发事件",
+      "value": "42"
+    }, {
+      "label": "隐患上报",
+      "value": "43"
+    }]
+  }, {
+    "key": 1476081160020754434,
+    "label": "测试",
+    "value": "5",
+    "children": [{
+      "label": "测试",
+      "value": "51"
+    }]
+  }],
+  "requestId": "5e33b0e42e2586624a66eb40"
+}

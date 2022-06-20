@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <ul class="img-list  J_imgList"></ul>
+  </div>
+  <div id="J_data" style="display:none">
+    [
+    {"imgs":"imgs/1.jpeg","name":"图片1"},
+    {"imgs":"imgs/2.jpeg","name":"图片2"},
+    {"imgs":"imgs/3.jpeg","name":"图片3"},
+    {"imgs":"imgs/4.jpeg","name":"图片4"}
+    ]
+  </div>
+</body>
+
+<script type="text/html" id='J_imgTpl'>
+  <li class="img-item">
+    <div class='img-wrap'>
+      <img src="imgs/d.gif" class='list-img' data-src='{{img}}' alt="{{name}}">
+    </div>
+    <div class="img-tt">
+      <h1>{{name}}</h1>
+    </div>
+  </li>
+</script>
+<script>
+  const str = '浙江省/杭州市/上城区'
+  console.log(str.split('/'))
+  console.log(str.split('/').join(''))
+</script>
+
+</html>

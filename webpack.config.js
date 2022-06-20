@@ -22,7 +22,7 @@ const autoprefixer = require('autoprefixer');
  * vue-style-loader
  */
 
-const _ = './22.vue/';
+const _ = './15.vue/';
 
 module.exports = {
   mode: 'development',

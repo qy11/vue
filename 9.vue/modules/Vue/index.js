@@ -30,7 +30,7 @@
 
 /**
  * showPool   Map { dom: {} }
- * 
+ *
  * [
  *   [
  *     dom,
@@ -40,9 +40,9 @@
  *     }
  *   ]
  * ]
- * 
+ *
  * eventPool
- * 
+ *
  * [
  *   [
  *     dom,
@@ -52,14 +52,13 @@
  */
 
 var Vue = (function () {
-  function Vue (options) {
-    
+  function Vue(options) {
     var recycles = {
       beforeCreate: options.beforeCreate.bind(this),
       created: options.created.bind(this),
       beforeMount: options.beforeMount.bind(this),
-      mounted: options.mounted.bind(this)
-    }
+      mounted: options.mounted.bind(this),
+    };
 
     recycles.beforeCreate();
 
@@ -71,12 +70,12 @@ var Vue = (function () {
   }
 
   Vue.prototype._init = function (vm, template, methods, recycles) {
-
+    // console.log("vm", vm);
     recycles.created();
 
-    var container = document.createElement('div');
+    var container = document.createElement("div");
     container.innerHTML = template;
-    
+
     var showPool = new Map();
     var eventPool = new Map();
 
@@ -84,11 +83,11 @@ var Vue = (function () {
     initPool(container, methods, showPool, eventPool);
     bindEvent(vm, eventPool);
     render(vm, showPool, container, recycles);
-  }
+  };
 
-  function initData (vm, showPool) {
+  function initData(vm, showPool) {
     var _data = vm.$data;
-
+    // console.log("initData", vm, _data);
     for (var key in _data) {
       (function (key) {
         Object.defineProperty(vm, key, {
@@ -99,72 +98,66 @@ var Vue = (function () {
             // this.isShowImg1 = true
             _data[key] = newValue;
             update(vm, key, showPool);
-          }
-        })
+          },
+        });
       })(key);
     }
   }
 
-  function initPool (container, methods, showPool, eventPool) {
-    var _allNodes = container.getElementsByTagName('*');
+  function initPool(container, methods, showPool, eventPool) {
+    var _allNodes = container.getElementsByTagName("*");
+    // console.log("initPool", _allNodes);
     var dom = null;
 
-    for (var i = 0; i < _allNodes.length; i ++) {
+    for (var i = 0; i < _allNodes.length; i++) {
       dom = _allNodes[i];
 
-      var vIfData = dom.getAttribute('v-if');
-      var vShowData = dom.getAttribute('v-show');
-      var vEvent = dom.getAttribute('@click');
-
+      var vIfData = dom.getAttribute("v-if");
+      var vShowData = dom.getAttribute("v-show");
+      var vEvent = dom.getAttribute("@click");
       if (vIfData) {
-        showPool.set(
-          dom,
-          {
-            type: 'if',
-            prop: vIfData
-          }
-        );
-        dom.removeAttribute('v-if');
+        // console.log("vIfData", vIfData);
+        showPool.set(dom, {
+          type: "if",
+          prop: vIfData,
+        });
+        dom.removeAttribute("v-if");
       } else if (vShowData) {
-        showPool.set(
-          dom,
-          {
-            type: 'show',
-            prop: vShowData
-          }
-        );
-        dom.removeAttribute('v-show');
+        showPool.set(dom, {
+          type: "show",
+          prop: vShowData,
+        });
+        dom.removeAttribute("v-show");
       }
-
+      // console.log("showPool", showPool);
       if (vEvent) {
-        eventPool.set(
-          dom, 
-          methods[vEvent]
-        );
-        dom.removeAttribute('@click');
+        eventPool.set(dom, methods[vEvent]);
+        dom.removeAttribute("@click");
       }
     }
+    // console.log("container", container.innerHTML);
   }
 
-  function bindEvent (vm, eventPool) {
-    for (var [ dom, handler ] of eventPool) {
+  function bindEvent(vm, eventPool) {
+    // console.log("bindEvent", eventPool);
+    for (var [dom, handler] of eventPool) {
       vm[handler.name] = handler;
-      dom.addEventListener('click', vm[handler.name].bind(vm), false);
+      dom.addEventListener("click", vm[handler.name].bind(vm), false);
     }
   }
 
-  function render (vm, showPool, container, recycles) {
+  function render(vm, showPool, container, recycles) {
     var _data = vm.$data;
     var _el = vm.$el;
 
-    for (var [ dom, info ] of showPool) {
+    for (var [dom, info] of showPool) {
       switch (info.type) {
-        case 'if':
-          info.comment = document.createComment(['v-if']);
+        case "if":
+          info.comment = document.createComment(["v-if"]);
           !_data[info.prop] && dom.parentNode.replaceChild(info.comment, dom);
           break;
-        case 'show':
-          !_data[info.prop] && (dom.style.display = 'none');
+        case "show":
+          !_data[info.prop] && (dom.style.display = "none");
           break;
         default:
           break;
@@ -176,19 +169,21 @@ var Vue = (function () {
     recycles.mounted();
   }
 
-  function update (vm, key, showPool) {
+  function update(vm, key, showPool) {
     var _data = vm.$data;
 
-    for (var [ dom, info ] of showPool) {
+    for (var [dom, info] of showPool) {
       if (info.prop === key) {
         switch (info.type) {
-          case 'if':
-            !_data[key] ? dom.parentNode.replaceChild(info.comment, dom)
-                        : info.comment.parentNode.replaceChild(dom, info.comment);
+          case "if":
+            !_data[key]
+              ? dom.parentNode.replaceChild(info.comment, dom)
+              : info.comment.parentNode.replaceChild(dom, info.comment);
             break;
-          case 'show':
-            !_data[key] ? (dom.style.display = 'none')
-                        : (dom.removeAttribute('style'));
+          case "show":
+            !_data[key]
+              ? (dom.style.display = "none")
+              : dom.removeAttribute("style");
             break;
           default:
             break;

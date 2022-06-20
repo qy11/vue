@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .container::after {
+    /* display: grid;
+    grid-template-columns: repeat(3, 33.33%);
+    grid-template-rows: repeat(3, 33.33%); */
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    content: " ";
+    border-right: 100px solid transparent;
+    border-top: 100px solid #ff0;
+    border-left: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+  }
+
+  /* div:after{
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    content: " ";
+    border-right: 100px solid transparent;
+    border-top: 100px solid #ff0;
+    border-left: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+} */
+</style>
+
+<body>
+  <div class="container">
+    <div>
+      <p>1</p>
+    </div>
+    <div>
+      <p>2</p>
+    </div>
+    <div>
+      <p>3</p>
+    </div>
+  </div>
+
+</body>
+<script>
+  // function test() {
+  //   console.log('4')
+  // }
+  // console.log(test())
+
+  // sessionStorage.setItem("lastname", "Smith");
+  // var lastname = sessionStorage.getItem("lastname");
+
+  // console.log(lastname)
+
+  // localStorage.setItem("key", "value");
+  // var lastname = localStorage.getItem("key");
+  // console.log(lastname)
+
+  // document.cookie = '123'
+  // var co = document.cookie;
+  // console.log(co)
+
+  // function fact(n) {
+  //   if (n === 1) {
+  //     return 1  //出口
+  //   }
+  //   return n * fact(n - 1)
+  // }
+  // console.log(fact(5))
+
+
+  // function test() {
+  //   return a;
+  //   a = 1;
+  //   function a() {
+  //   }
+  //   var a = 2
+  // }
+  // console.log(test().__proto__) // function a(){}
+
+
+  // if (true) {
+  //   var a = 9
+  // }
+  // function test() {
+  //   // var a = 9
+  //   a = 9
+  // }
+  // console.log(a)
+
+</script>
+
+</html>

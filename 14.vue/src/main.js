@@ -1,17 +1,17 @@
 /**
  * v-for  列表渲染
- * 
+ *
  * v-for=""
  * 指令表达式 -> (item, index) in/of list
  * index 可选项 -> item in/of list
- * 
+ *
  * in/of 都可以使用  数组|对象
- * 
+ *
  * 在Vue中两者都是一套定义方法
- * JavaScript枚举对象或者遍历概念里 -> 语义化
+ * JavaScript 枚举对象或者遍历概念里 -> 语义化
  *   for in  -> 对象属性的枚举
  *   for of  -> 可迭代对象的遍历
- * 
+ *
  * 遍历可迭代对象 -> for of   (item, index)
  * 枚举对象属性   -> for in   (value, key, index)
  */
@@ -27,7 +27,7 @@
 
 var ListItem = {
   props: {
-    item: Object
+    item: Object,
   },
   template: `
   <li>
@@ -35,39 +35,43 @@ var ListItem = {
     <span>Name: {{ item.name }} - </span>
     <span>Score: {{ item.score }}</span>
   </li>
-  `
-}
+  `,
+};
 
 var App = {
-  data () {
+  data() {
     return {
       list: [
         {
           id: 1,
-          name: 'Mike',
-          score: 89
+          name: "Mike",
+          score: 89,
         },
         {
           id: 2,
-          name: 'Tom',
-          score: 59
+          name: "Tom",
+          score: 59,
         },
         {
           id: 3,
-          name: 'Jack',
-          score: 66
-        }
+          name: "Jack",
+          score: 66,
+        },
       ],
       privateInfo: {
-        name: 'Crystal',
+        name: "Crystal",
         age: 18,
         height: 166,
         weight: 110,
-        hobbies: ['Travel', 'Piano', 'Swimming']
+        hobbies: ["Travel", "Piano", "Swimming"],
       },
-      myArray: [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10]],
-      starNum: 3
-    }
+      myArray: [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9, 10],
+      ],
+      starNum: 3,
+    };
   },
   template: `
     <!--
@@ -100,7 +104,7 @@ var App = {
           </ul>
         </template>
         <template v-else>
-          <span>{{ value }}</span>
+          <span>else: {{ value }}</span>
         </template>
       </li>
     </ul>
@@ -123,8 +127,9 @@ var App = {
       <li v-for="number of even(numbers)">{{ number }}</li>
     </ul>
 
-    <!-- 值范围 -->
+    <!--  -->
     <div>
+    值范围
       <span 
         v-for="s in 5"
         :key="s"
@@ -135,6 +140,7 @@ var App = {
 
     <!-- template与v-for -->
     <ul>
+      <p>template与v-for</p>
       <template v-for="item of list" :key="item.id">
         <li>Name: {{ item.name }}</li>
         <li>Score: {{ item.score }}</li>
@@ -149,6 +155,7 @@ var App = {
       保证组件有合理的配置性
       达到最好的复用效果
     -->
+    <p>自定义组件</p>
     <ul>
       <list-item
         v-for="item of list"
@@ -158,35 +165,34 @@ var App = {
     </ul>
   `,
   components: {
-    ListItem
+    ListItem,
   },
   computed: {
-    computedList () {
-      return this.list.map(item => {
+    computedList() {
+      return this.list.map((item) => {
         item.pass = item.score >= 60;
         return item;
-      })
-    }
+      });
+    },
   },
   methods: {
-    even (numbers) {
-      return numbers.filter(number => number % 2 === 0);
+    even(numbers) {
+      return numbers.filter((number) => number % 2 === 0);
     },
-    setStarNum (num) {
+    setStarNum(num) {
       this.starNum = num;
-    }
-  }
-}
+    },
+  },
+};
 
-Vue.createApp(App).mount('#app');
+Vue.createApp(App).mount("#app");
 
-var keys = Object.keys({
-  name: 'Crystal',
-  age: 18,
-  height: 166,
-  weight: 110,
-  hobbies: ['Travel', 'Piano', 'Swimming']
-});
+// var keys = Object.keys({
+//   name: "Crystal",
+//   age: 18,
+//   height: 166,
+//   weight: 110,
+//   hobbies: ["Travel", "Piano", "Swimming"],
+// });
 
-console.log(keys);
-
+// console.log(keys);
